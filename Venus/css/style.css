@@ -1,0 +1,33 @@
+/*
+#7692FF
+#0B7A75
+#D7C9AA
+#7B2D26
+#000000
+*/
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+body {
+  background-color: #0B7A75;
+  font-family: "Comfortaa";
+  color: #D7C9AA;
+  text-align: center;
+  background-image: url(https://i.pinimg.com/originals/5c/5f/83/5c5f8321f9a15956fbb02077e2ea39fc.jpg);
+  background-position: right bottom, left top;
+  background-repeat: repeat;
+}
+.background {
+  color: #D7C9AA;
+}
+
+footer{
+  border-top-style: solid;
+  border-color: #7692FF;
+  margin: auto;
+  padding: 10px;
+}
+
+a{
+  font-size: 20px;
+  text-decoration: none;
+  color: #D7C9AA;
+}
