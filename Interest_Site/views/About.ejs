@@ -1,0 +1,42 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Philip's Website</title>
+  <meta name="description" content="Hello World">
+  <meta name="author" content="You">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <%- include ('global/header', {title: "Venus"}); %>
+  <%- include ('global/navbar', {title: data}); %>
+  <div class="container">
+    <div class="row">
+  <div class="col-lg-6">
+  <h4>Some Background:</h4>
+  <p class="background">
+    Once thought to be devoid of life, scientists have found large traces of phosphine, a biosignature, high in Venus' atmosphere.
+    <br>This could either be evidence of life or of an undiscovered geological process.
+    <br>Venus had long been ignored by space exploration efforts, but it will now likely be the focus of new study.
+    <br>I think it's really cool how much there is to explore and discover right next to earth!
+  </p>
+</div>
+<div class="col-lg-6">
+  <h4>Interesting Resources:</h4>
+  <ul>
+    <li><a href="https://www.nytimes.com/2020/09/14/science/venus-life-clouds.html">New York Times article that gives an overview of the possibility of life on Venus</a></li>
+    <li><a href="https://www.nationalgeographic.com/science/2020/09/possible-sign-of-life-found-on-venus-phosphine-gas/">National Geographic article that goes more in depth into the science and the possibility for life</a></li>
+    <li><a href="https://www.scientificamerican.com/article/is-there-life-on-venus-these-missions-could-find-it/">Scientific American article about future exploration of Venus</a></li>
+  </ul>
+</div>
+</div>
+</div>
+  <%- include ('global/footer'); %>
+  <script src="js/scripts.js"></script>
+
+
+
+</body>

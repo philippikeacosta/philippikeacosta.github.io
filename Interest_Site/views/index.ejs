@@ -1,0 +1,40 @@
+<!doctype html>
+
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Philip's Website</title>
+  <meta name="description" content="Hello World">
+  <meta name="author" content="You">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <%- include ('global/header', {title: "Venus"}); %>
+  <%- include ('global/navbar', {title: data}); %>
+  <div class="container">
+    <div class="row">
+  <div class="col-lg-4"><p>Venus</p>
+    <!-- Don't judge me. It looks nice -->
+
+  <img class="img-fluid rounded"  src="https://www.sciencenews.org/wp-content/uploads/2018/02/020618_LG_venus-fobette_feat.jpg">
+  </div>
+  <div class="col-lg-4"><p>PBS Video on Venus</p>
+
+  <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/6KEXB92pxok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="col-lg-4"><p>NPR Podcast on Venus</p>
+
+  <iframe class="embed-responsive-item" src="https://www.npr.org/player/embed/912619891/912791485"  frameborder="0" scrolling="no" title="NPR embedded audio player"></iframe>
+  </div>
+</div>
+  </div>
+
+  <%- include ('global/footer'); %>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
