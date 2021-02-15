@@ -2,13 +2,27 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-light">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html"><img src="https://static01.nyt.com/images/2020/09/14/science/14SCI-VENUS1-alt/14SCI-VENUS1-alt-superJumbo.jpg?quality=90&auto=webp" alt="Logo" style="width:40px;"></a>
+      <a class="navbar-brand" href="/"><img src="https://static01.nyt.com/images/2020/09/14/science/14SCI-VENUS1-alt/14SCI-VENUS1-alt-superJumbo.jpg?quality=90&auto=webp" alt="Logo" style="width:40px;"></a>
+
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="About.html">About</a></li>
-      <li><a href="<%=link1%>">Blog Post 1</a></li>
-      <li><a href="<%=link2%>">Blog Post 2</a></li>
-      <li><a href="<%=link3%>">Blog Post 3</a></li>
+      <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Blog Posts
+  </a>
+       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+         <%if(data.title){%>
+           <% for (let i=0; i<posts.length; i++){%>
+             <a class="dropdown-item" href=<%='/blog/' + posts[i].title%>><%=posts[i].title.split('_').join(' ')%></a>
+           <%}}else{%>
+         <% for (let i=0; i<data.length; i++){%>
+           <a class="dropdown-item" href=<%='/blog/' + data[i].title%>><%=data[i].title.split('_').join(' ')%></a>
+           <%}}%>
+       </div>
+      </div>
+      <li class="active"  ><a id="link_item" href="/About">About</a></li>
+      <li class="active" ><a id="link_item"href="/blogCreate">Create Blog</a></li>
+
     </ul>
   </div>
 </nav>

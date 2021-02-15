@@ -6,14 +6,14 @@
   <title>Philip's Website</title>
   <meta name="description" content="Hello World">
   <meta name="author" content="You">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
 <body>
   <%- include ('global/header', {title: "Venus"}); %>
-<%- include ('global/navbar', {title: data}); %>
+<%- include ('global/navbar', {title: data.title}); %>
 <div class="container">
 <div class="row">
 <div class="col-lg-2"><b>Date</b></div>
@@ -28,8 +28,11 @@
 <div class="col-lg-6"><%= data.text %></div>
 </div>
 </div>
+<h2>likes:<span id="like_count"><%=data.likes%></span> <button id="like_button" type="button">likes</button> </h2>
+
 
   <%- include ('global/footer'); %>
+  <script src="/js/userdetails_scripts.js"></script>
 </body>
 
 </html>

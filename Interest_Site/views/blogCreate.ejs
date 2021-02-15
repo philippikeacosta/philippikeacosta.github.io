@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Philip's Website</title>
+  <meta name="description" content="Hello World">
+  <meta name="author" content="You">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <%- include ('global/header', {title: "Venus"}); %>
+  <%- include ('global/navbar', {title: data}); %>
+
+  <h1>Create Entry</h1>
+
+  <form action="/blog" method="post">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="date">Date:</label><br>
+    <input type="text" id="date" name="date"><br>
+    <label for="author">Author:</label><br>
+    <input type="author" id="author" name="author"><br>
+    <label for="publication">Publication:</label><br>
+    <input type="publication" id="publication" name="publication"><br>
+    <label for="text">Text:</label><br>
+    <input type="text" id="text" name="text"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script src="/js/scripts.js"></script>
+</body>
+
+</html>
