@@ -1,3 +1,6 @@
+//use index of position as id for comment
+//take comment and blog post ids
+
 const fs = require('fs');
 const ejs = require('ejs');
 const express = require('express');
@@ -8,7 +11,9 @@ let bodyParser = require('body-parser');
 const app = express();
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(bodyParser.json())
 //..............Apply Express middleware to the server object....//
 app.use(express.static('public'));
@@ -50,7 +55,7 @@ app.get('/blogCreate', function(request, response) {
   });
 });
 
-app.post('/user/like/:blog_title', function(request, response) {
+app.post('/blog/like/:blog_title', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let title = request.params.blog_title;
 
@@ -102,7 +107,7 @@ app.get('/blog/:blog_title', function(request, response) {
 
 app.post('/blog', function(request, response) {
   let posts = JSON.parse(fs.readFileSync('data/content.json'));
-console.log(request.body);
+  console.log(request.body);
   var u = {
     title: request.body.title.trim().split(" ").join("_"),
     date: request.body.date.trim(),
