@@ -77,6 +77,28 @@ app.post('/blog/like/:blog_title', function(request, response) {
 
 });
 
+app.post('/blog/comment/:blog_title', function(request, response) {
+  let content = JSON.parse(fs.readFileSync('data/content.json'));
+  let title = request.params.blog_title;
+
+  for (let i = 0; i < content.length; i++) {
+    if (content[i].title == title) {
+      let post = content[i];
+      if (!content[i].likes) content[i].likes = 0;
+      content[i].likes++;
+      fs.writeFileSync('data/content.json', JSON.stringify(content));
+
+      response.status(200);
+      response.setHeader('Content-Type', 'text/json');
+      response.send(content[i]);
+    }
+  }
+  response.status(404);
+  response.setHeader('Content-Type', 'text/json');
+  response.send('{results: "no user"}');
+
+});
+
 app.get('/blog/:blog_title', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let title = request.params.blog_title;
