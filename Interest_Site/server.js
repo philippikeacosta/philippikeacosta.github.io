@@ -103,26 +103,46 @@ app.get('/blog/:blog_title', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let title = request.params.blog_title;
   //console.log(title);
-  for (let i = 0; i < content.length; i++) {
-    if (content[i].title == title) {
-      let post = content[i];
-      console.log(post)
-      post.title = title;
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html');
-      response.render("blog", {
-        data: post,
-        posts: content
-      });
-    }
+
+  if (content[title]) {
+    let post = content[title];
+    post.title = title;
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html');
+    response.render("blog", {
+      data: post,
+      posts: content
+    });
+
+  } else {
+    response.status(404);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode": "404"
+    });
   }
-  response.status(404);
-  response.setHeader('Content-Type', 'text/html')
-  response.render("error", {
-    title: 'Error',
-    data: content,
-    "errorCode": "404"
-  });
+
+  // for (let i = 0; i < content.length; i++) {
+  //   if (content[i].title == title) {
+  //     let post = content[i];
+  //     console.log(post)
+  //     post.title = title;
+  //     response.status(200);
+  //     response.setHeader('Content-Type', 'text/html');
+  //     response.render("blog", {
+  //       data: post,
+  //       posts: content
+  //     });
+  //   }
+  // }
+  // response.status(404);
+  // response.setHeader('Content-Type', 'text/html')
+  // response.render("error", {
+  //   title: 'Error',
+  //   data: content,
+  //   "errorCode": "404"
+  // });
 
 });
 

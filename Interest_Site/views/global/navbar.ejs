@@ -11,16 +11,17 @@
     Blog Posts
   </a>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-         <%if(data.title){%>
+
+         <%if(false){%>
            <% for (let i=0; i<posts.length; i++){%>
              <a class="dropdown-item" href=<%='/blog/' + posts[i].title%>><%=posts[i].title.split('_').join(' ')%></a>
            <%}}else{%>
-         <% for (let i=0; i<data.length; i++){%>
-           <a class="dropdown-item" href=<%='/blog/' + data[i].title%>><%=data[i].title.split('_').join(' ')%></a>
+         <% for (let i=0; i<Object.keys(data).length; i++){%>
+           <a class="dropdown-item" href=<%='/blog/' + Object.keys(data)[i]%>><%=Object.keys(data)[i].split('_').join(' ')%></a>
            <%}}%>
        </div>
       </div>
-      <li class="active"  ><a id="link_item" href="/About">About</a></li>
+        <li class="active"  ><a id="link_item" href="/About">About</a></li>
       <li class="active" ><a id="link_item"href="/blogCreate">Create Blog</a></li>
 
     </ul>
