@@ -45,62 +45,72 @@ app.get('/about', function(request, response) {
   });
 });
 
-app.get('/blogCreate', function(request, response) {
+app.get('/createBlog', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
+  let users = JSON.parse(fs.readFileSync('data/users.json'));
   response.status(200);
   response.setHeader('Content-Type', 'text/html');
-  response.render("blogCreate", {
+  response.render("createBlog", {
     title: 'Create Blog',
-    data: content
+    data: content,
+    users: users
   });
 });
 
 app.post('/blog/like/:blog_title', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let title = request.params.blog_title;
+  let commentid = request.body.commentid;
 
-  for (let i = 0; i < content.length; i++) {
-    if (content[i].title == title) {
-      let post = content[i];
-      if (!content[i].likes) content[i].likes = 0;
-      content[i].likes++;
-      fs.writeFileSync('data/content.json', JSON.stringify(content));
+  if(content[title]){
+    if(typeof commentid !== 'undefined'){
+        if (!content[title].comments[commentid].likes) content[title].comments[commentid].likes = 0;
+        content[title].comments[commentid].likes++;
+      }
+    fs.writeFileSync('data/content.json', JSON.stringify(content));
 
-      response.status(200);
-      response.setHeader('Content-Type', 'text/json');
-      response.send(content[i]);
-    }
+    response.status(200);
+    response.setHeader('Content-Type', 'text/json');
+    response.send(content[title]);
+  }else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/json');
+    response.send('{results: "no user"}');
   }
-  response.status(404);
-  response.setHeader('Content-Type', 'text/json');
-  response.send('{results: "no user"}');
+
 
 });
 
 app.post('/blog/comment/:blog_title', function(request, response) {
+  console.log(request.body);
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let title = request.params.blog_title;
 
-  for (let i = 0; i < content.length; i++) {
-    if (content[i].title == title) {
-      let post = content[i];
-      if (!content[i].likes) content[i].likes = 0;
-      content[i].likes++;
-      fs.writeFileSync('data/content.json', JSON.stringify(content));
 
-      response.status(200);
-      response.setHeader('Content-Type', 'text/json');
-      response.send(content[i]);
-    }
+  if(content[title]){
+    var comment = {
+      author: request.body.author,
+      date: request.body.date,
+      text: request.body.text,
+    };
+    content[title].comments[content[title].comments.length] = comment;
+
+    fs.writeFileSync('data/content.json', JSON.stringify(content));
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/json');
+    response.send(content[title]);
+  }else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/json');
+    response.send('{results: "no user"}');
   }
-  response.status(404);
-  response.setHeader('Content-Type', 'text/json');
-  response.send('{results: "no user"}');
 
 });
 
 app.get('/blog/:blog_title', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
+  let users = JSON.parse(fs.readFileSync('data/users.json'));
   let title = request.params.blog_title;
   //console.log(title);
 
@@ -111,15 +121,19 @@ app.get('/blog/:blog_title', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html');
     response.render("blog", {
-      data: post,
-      posts: content
+      data: content,
+      posts: post,
+      users: users,
+      title: title,
+      comments: []
     });
 
   } else {
     response.status(404);
     response.setHeader('Content-Type', 'text/html')
     response.render("error", {
-      "errorCode": "404"
+      "errorCode": "404",
+      data: content
     });
   }
 
@@ -149,16 +163,17 @@ app.get('/blog/:blog_title', function(request, response) {
 
 app.post('/blog', function(request, response) {
   let posts = JSON.parse(fs.readFileSync('data/content.json'));
-  console.log(request.body);
+  //console.log(request.body);
   var u = {
-    title: request.body.title.trim().split(" ").join("_"),
+
     date: request.body.date.trim(),
     author: request.body.author.trim(),
     publication: request.body.publication.trim(),
-    text: request.body.date.trim(),
+    text: request.body.text.trim(),
+    comments: []
   };
+  posts[request.body.title.trim().split(" ").join("_")] = u;
 
-  posts[posts.length] = u;
   fs.writeFileSync('data/content.json', JSON.stringify(posts));
 
   response.redirect("/");

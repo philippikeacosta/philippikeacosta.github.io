@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Philip's Website</title>
+  <title>Life on Venus</title>
   <meta name="description" content="Hello World">
   <meta name="author" content="You">
   <link rel="stylesheet" href="css/style.css">
@@ -20,17 +20,22 @@
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br>
     <label for="date">Date:</label><br>
-    <input type="text" id="date" name="date"><br>
-    <label for="author">Author:</label><br>
-    <input type="author" id="author" name="author"><br>
+    <input type="date" id="date" name="date"><br>
+    <label for="author">Choose an author:</label>
+    <select name="author" id="author">
+    <% for (let i=0; i<users.length; i++){%>
+      <option value= <%=users[i]%>><%=users[i]%></option>
+      <%}%>
+    </select><br>
     <label for="publication">Publication:</label><br>
     <input type="publication" id="publication" name="publication"><br>
     <label for="text">Text:</label><br>
-    <input type="text" id="text" name="text"><br>
+    <textarea type="text" id="text" name="text"></textarea>
     <input type="submit" value="Submit">
   </form>
 
   <script src="/js/scripts.js"></script>
+    <%- include ('global/footer'); %>
 </body>
 
 </html>

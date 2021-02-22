@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Philip's Website</title>
+  <title>Life on Venus</title>
   <meta name="description" content="Hello World">
   <meta name="author" content="You">
   <link rel="stylesheet" href="/css/style.css">
@@ -13,7 +13,7 @@
 
 <body>
   <%- include ('global/header', {title: "Venus"}); %>
-<%- include ('global/navbar', {title: data.title}); %>
+<%- include ('global/navbar', {title: posts.title}); %>
 <div class="container">
 <div class="row">
 <div class="col-lg-2"><b>Date</b></div>
@@ -22,24 +22,47 @@
 <div class="col-lg-6"><b>Content</b></div>
 </div>
 <div class="row">
-<div class="col-lg-2"><%= data.date %></div>
-<div class="col-lg-2"><%= data.author %></div>
-<div class="col-lg-2"><%= data.publication %></div>
-<div class="col-lg-6"><%= data.text %></div>
+<div class="col-lg-2"><%= posts.date %></div>
+<div class="col-lg-2"><%= posts.author %></div>
+<div class="col-lg-2"><%= posts.publication %></div>
+<div class="col-lg-6"><%= posts.text %></div>
 </div>
 </div>
-  <form action="" method="post">
-    <label for="author">Author:</label><br>
-    <input type="author" id="author" name="author"><br>
-    <label for="text">Text:</label><br>
-    <input type="text" id="text" name="text"><br>
-    <label for="date">Date:</label><br>
-    <input type="date" id="date" name="date"><br>
-    <input type="submit" value="Submit">
-  </form>
 
-  //this should not be a form-just a text area
-<h2>likes:<span id="like_count"><%=data.likes%></span> <button id="like_button" type="button">likes</button> </h2>
+<div class="container">
+  <h3>Comments:</h3>
+  <%if(typeof posts.comments !== 'undefined'){%>
+  <% for (let i=0; i<posts.comments.length; i++){%>
+    <%console.log(i.toString());%>
+    <div class="row">
+    <div class="col-lg-2"><b>Author</b></div>
+    <div class="col-lg-2"><b>Date</b></div>
+    <div class="col-lg-4"><b>Content</b></div>
+
+    </div>
+    <div class="row">
+    <div class="col-lg-2"><%= posts.comments[i].author %></div>
+    <div class="col-lg-2"><%= posts.comments[i].date %></div>
+    <div class="col-lg-4"><%= posts.comments[i].text %></div>
+    <div class="col-lg-2"> <h2>likes: <span id="like_count" class = <%-i%>><%=posts.comments[i].likes%></span> <button class="like_button" id = <%-i%> type="button">Like</button> </h2></div>
+    </div>
+
+    <%}}%>
+</div>
+<div class="container">
+  <label for="author">Author:</label>
+<select name="author" id="comment-author">
+  <% for (let i=0; i<users.length; i++){%>
+    <option value= <%=users[i]%>><%=users[i]%></option>
+    <%}%>
+</select>
+<label for="date">Date:</label><br>
+<input type="date" id="comment-date" name="date"><br>
+  <textarea type="text" id="comment-text" name="text"></textarea>
+  <button id="comment-submit" type="button">Submit Comment</button>
+</div>
+
+
 
 
   <%- include ('global/footer'); %>
