@@ -31,13 +31,13 @@ app.get('/', function(request, response) {
   });
 });
 
-app.get('/about', function(request, response) {
+app.get('/About', function(request, response) {
   let content = JSON.parse(fs.readFileSync('data/content.json'));
   let link = [];
 
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("about", {
+  response.render("About", {
     data: content,
     title: 'About'
   });
