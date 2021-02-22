@@ -4,7 +4,7 @@
   "description": "1. type cd filepath/Interest_Site into console\r 2. type node server.js\r 3. lessc LESS/styles.less build/style.css (I haven't tested doing it this way)\r 4. Open website",
   "main": "server.js",
   "engines": {
-    "node": "12.x"
+    "node": "12.1"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
